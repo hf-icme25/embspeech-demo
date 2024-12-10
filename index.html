@@ -1,0 +1,377 @@
+<html>
+    <!-- HEADER -->
+    <head>
+        <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+
+        <title>Demo page of EmbSpeech </title>
+        <link rel="icon" href="resources/imgs/icon.png">
+        <link rel="stylesheet" href="css/allsetting.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100&display=swap" rel="stylesheet">
+    </head>
+
+    <!-- MAIN BODY -->
+    <body>
+        <div class="main">
+            <!-- HEADER -->
+            <div class="header-wrapper" style="background-color: rgb(249, 247, 237); color: rgb(141, 82, 167);">
+            <br>
+            <h1 class="wrapper" style="font-weight: bold;">EmbSpeech: A Unified Framework Towards Low-resource Zero-shot Speech Synthesis</h1>
+            <p class="wrapper" style="font-size: large;">Submitted to ICME 2025.</p>
+            <br><br>
+            </div>
+            <br><br>
+
+            <!-- ABSTRACT -->
+            <h2 class="wrapper" style="color: rgb(141, 82, 167)">Abstract</h2>
+            <p class="wrapper">
+                Speech synthesis is striving to explore efficient content representations for different tasks, which also drives research on models capable of performing multiple tasks. 
+                However, current approaches are predominantly based on text-to-speech models, which require large-scale transcribed datasets, simultaneously limiting the representation. 
+                To address this issue, we propose EmbSpeech, a novel framework unifying zero-shot speech synthesis tasks through speaker-independent self-supervised speech representations. 
+                EmbSpeech is built on a voice conversion model and consists of several task-specific encoders, a speaker encoder, and a diffusion-based decoder. 
+                With task-specific encoders, EmbSpeech can perform voice conversion, text-to-speech synthesis, and speaking style conversion. 
+                Experiments show that our framework can achieve comparable or even better performance than the baselines in low-resource settings.
+            </p>
+            <br><br>
+            <div style="margin-left: auto; margin-right: auto; text-align: center;">
+                <img src="resources/imgs/es.png" style="width: 830px; height: auto; padding: 0px;"/>
+                <br><br>
+                <p class="wrapper" style="max-width: 500px; text-align: center; font-size: small; padding-top: 5px;">
+                Figure 1. The overview of EmbSpeech.
+                </p>
+            </div>
+
+            <!-- 1 VC -->
+            <br><br>
+            <h2 class="wrapper" style="color: rgb(141, 82, 167)">1. Voice Conversion</h2>
+            <p class="wrapper">
+                <!--  -->
+            </p>
+
+
+
+            <div>
+            <table class="wrapper"> 
+                <tbody style="margin-right: auto; text-align: center;"> 
+                    <tr> 
+                        <td style="font-size: medium; text-align: center;">Source</td> 
+                        <td><audio controls=""><source src="resources/wavs/vc/src/3729_6852_000003_000004.wav"></audio></td> 
+                        <td><audio controls=""><source src="resources/wavs/vc/src/5105_28241_000003_000001.wav"></audio></td> 
+                        <td><audio controls=""><source src="resources/wavs/vc/src/8463_287645_000024_000000.wav"></audio></td> 
+                        <td><audio controls=""><source src="resources/wavs/vc/src/8555_284447_000045_000000.wav"></audio></td> 
+                    </tr> 
+                    <tr> 
+                        <td><br></td> 
+                    </tr> 
+                    <tr> 
+                        <td style="font-size: medium; text-align: center;">Target</td> 
+                        <td><audio controls=""><source src="resources/wavs/vc/tgt/237_134500_000009_000000.wav"></audio></td> 
+                        <td><audio controls=""><source src="resources/wavs/vc/tgt/2961_961_000016_000004.wav"></audio></td> 
+                        <td><audio controls=""><source src="resources/wavs/vc/tgt/260_123286_000034_000002.wav"></audio></td> 
+                        <td><audio controls=""><source src="resources/wavs/vc/tgt/1188_133604_000023_000000.wav"></audio></td> 
+                    </tr> 
+                    <tr> 
+                        <td><br></td> 
+                    </tr> 
+                    <tr> 
+                        <td><br></td> 
+                    </tr>  
+                    <tr> 
+                        <td style="font-size: medium; text-align: center;">
+                            <b>YourTTS</b>
+                        </td> 
+                        <td><audio controls=""><source src="resources/wavs/vc/yourtts/3729_6852_000003_000004_to_237.wav"></audio></td>
+                        <td><audio controls=""><source src="resources/wavs/vc/yourtts/5105_28241_000003_000001_to_2961.wav"></audio></td>
+                        <td><audio controls=""><source src="resources/wavs/vc/yourtts/8463_287645_000024_000000_to_260.wav"></audio></td> 
+                        <td><audio controls=""><source src="resources/wavs/vc/yourtts/8555_284447_000045_000000_to_1188.wav"></audio></td>
+                    </tr> 
+                    <tr> 
+                        <td><br></td> 
+                    </tr> 
+                    <tr> 
+                        <td style="font-size: medium; text-align: center;">
+                            <b>UnitSpeech</b>
+                        </td> 
+                        <td><audio controls=""><source src="resources/wavs/vc/unitspeech/3729_6852_000003_000004_to_237.wav"></audio></td>
+                        <td><audio controls=""><source src="resources/wavs/vc/unitspeech/5105_28241_000003_000001_to_2961.wav"></audio></td>
+                        <td><audio controls=""><source src="resources/wavs/vc/unitspeech/8463_287645_000024_000000_to_260.wav"></audio></td> 
+                        <td><audio controls=""><source src="resources/wavs/vc/unitspeech/8555_284447_000045_000000_to_1188.wav"></audio></td>
+                    </tr> 
+                    <tr> 
+                        <td><br></td> 
+                    </tr> 
+                    <tr> 
+                        <td style="font-size: medium; text-align: center;">
+                            <b>UnitSpeech(ft)</b>
+                        </td>
+                        <td><audio controls=""><source src="resources/wavs/vc/unitspeech_ft/3729_6852_000003_000004_to_237.wav"></audio></td>
+                        <td><audio controls=""><source src="resources/wavs/vc/unitspeech_ft/5105_28241_000003_000001_to_2961.wav"></audio></td>
+                        <td><audio controls=""><source src="resources/wavs/vc/unitspeech_ft/8463_287645_000024_000000_to_260.wav"></audio></td> 
+                        <td><audio controls=""><source src="resources/wavs/vc/unitspeech_ft/8555_284447_000045_000000_to_1188.wav"></audio></td>
+                    </tr> 
+                    <tr> 
+                        <td><br></td> 
+                    </tr> 
+                    <tr> 
+                        <td style="font-size: medium; text-align: center;">
+                            <b>EmbSpeech</b>
+                        </td>
+                        <td><audio controls=""><source src="resources/wavs/vc/embspeech/3729_6852_000003_000004_to_237.wav"></audio></td>
+                        <td><audio controls=""><source src="resources/wavs/vc/embspeech/5105_28241_000003_000001_to_2961.wav"></audio></td>
+                        <td><audio controls=""><source src="resources/wavs/vc/embspeech/8463_287645_000024_000000_to_260.wav"></audio></td> 
+                        <td><audio controls=""><source src="resources/wavs/vc/embspeech/8555_284447_000045_000000_to_1188.wav"></audio></td>
+                    </tr> 
+                    <tr> 
+                        <td><br></td> 
+                    </tr> 
+                </tbody> 
+            </table> 
+            </div>
+
+            <br><br><br>
+            <!-- 2 TTS-->
+            <h2 class="wrapper" style="color: rgb(141, 82, 167)">2. Text-to-Speech </h2>    
+            <p class="wrapper">
+                <!--  -->
+            </p>    
+        
+
+            <div>
+                <table class="wrapper"> 
+                    <tbody style="margin-right: auto; text-align: center;"> 
+                        <tr> 
+                            <td style="font-size: medium; text-align: center;">Text</td> 
+                            <td>He was handsome and bold and pleasant, offhand and gay and kind.</td> 
+                            <td>I will show you what a good job I did, and she went to a tall cupboard and threw open the doors.</td> 
+                            <td>But tools were not wanting, as indeed they never have been, for murder and its kindred outrages.</td> 
+                            <td>A ring of amethyst I could not wear here, plainer to my sight, Than that first kiss.</td> 
+                        </tr>
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+                        <tr> 
+                            <td style="font-size: medium; text-align: center;">Target</td> 
+                            <td><audio controls=""><source src="resources/wavs/tts/ref/121_127105_000044_000004.wav"></audio></td> 
+                            <td><audio controls=""><source src="resources/wavs/tts/ref/1284_1181_000003_000002.wav"></audio></td> 
+                            <td><audio controls=""><source src="resources/wavs/tts/ref/4077_13754_000003_000000.wav"></audio></td> 
+                            <td><audio controls=""><source src="resources/wavs/tts/ref/908_31957_000003_000002.wav"></audio></td> 
+                        </tr> 
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+                        <tr> 
+                            <td style="font-size: medium; text-align: center;">
+                                <b>YourTTS</b>
+                            </td> 
+                            <td><audio controls=""><source src="resources/wavs/tts/yourtts/121_127105_000043_000004.wav"></audio></td>
+                            <td><audio controls=""><source src="resources/wavs/tts/yourtts/1284_1180_000053_000001.wav"></audio></td>
+                            <td><audio controls=""><source src="resources/wavs/tts/yourtts/4077_13751_000019_000003.wav"></audio></td>
+                            <td><audio controls=""><source src="resources/wavs/tts/yourtts/908_31957_000017_000001.wav"></audio></td>
+                        </tr> 
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+                        <tr> 
+                            <td style="font-size: medium; text-align: center;">
+                                <b>UnitSpeech</b>
+                            </td>
+                            <td><audio controls=""><source src="resources/wavs/tts/unitspeech/121_127105_000043_000004.wav"></audio></td>
+                            <td><audio controls=""><source src="resources/wavs/tts/unitspeech/1284_1180_000053_000001.wav"></audio></td>
+                            <td><audio controls=""><source src="resources/wavs/tts/unitspeech/4077_13751_000019_000003.wav"></audio></td>
+                            <td><audio controls=""><source src="resources/wavs/tts/unitspeech/908_31957_000017_000001.wav"></audio></td>
+                        </tr> 
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+                        <tr> 
+                            <td style="font-size: medium; text-align: center;">
+                                <b>UnitSpeech(ft)</b>
+                            </td> 
+                            <td><audio controls=""><source src="resources/wavs/tts/unitspeech_ft/121_127105_000043_000004.wav"></audio></td>
+                            <td><audio controls=""><source src="resources/wavs/tts/unitspeech_ft/1284_1180_000053_000001.wav"></audio></td>
+                            <td><audio controls=""><source src="resources/wavs/tts/unitspeech_ft/4077_13751_000019_000003.wav"></audio></td>
+                            <td><audio controls=""><source src="resources/wavs/tts/unitspeech_ft/908_31957_000017_000001.wav"></audio></td>
+                        </tr> 
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+                        <tr> 
+                            <td style="font-size: medium; text-align: center;">
+                                <b>EmbSpeech</b>
+                            </td>
+                                <td><audio controls=""><source src="resources/wavs/tts/embspeech/121_127105_000043_000004.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/embspeech/1284_1180_000053_000001.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/embspeech/4077_13751_000019_000003.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/embspeech/908_31957_000017_000001.wav"></audio></td>
+                        </tr> 
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+                    </tbody> 
+                </table> 
+            </div>
+            <br><br><br>
+
+            <!-- 3 SSC-->
+            <h2 class="wrapper" style="color: rgb(141, 82, 167)">3. Speaking Style Conversion </h2>    
+            <p class="wrapper">
+                <!--  -->
+            </p>    
+        
+
+            <div>
+                <table class="wrapper"> 
+                    <tbody style="margin-right: auto; text-align: center;"> 
+                        <tr> 
+                            <td style="font-size: medium; text-align: center; width: 100%;">Source</td> 
+                            <td><audio controls=""><source src="resources/wavs/ssc/src/p245_001.wav"></audio></td> 
+                            <td><audio controls=""><source src="resources/wavs/ssc/src/p270_007.wav"></audio></td> 
+                            <td><audio controls=""><source src="resources/wavs/ssc/src/p239_001.wav"></audio></td> 
+                            <td><audio controls=""><source src="resources/wavs/ssc/src/p231_010.wav"></audio></td> 
+                        </tr> 
+                        <tr> 
+                            <td style="font-size: medium; text-align: center;">Target</td> 
+                            <td><audio controls=""><source src="resources/wavs/ssc/tgt/p231_001.wav"></audio></td> 
+                            <td><audio controls=""><source src="resources/wavs/ssc/tgt/p239_007.wav"></audio></td> 
+                            <td><audio controls=""><source src="resources/wavs/ssc/tgt/p245_001.wav"></audio></td> 
+                            <td><audio controls=""><source src="resources/wavs/ssc/tgt/p270_010.wav"></audio></td> 
+                        </tr> 
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+                        <tr> 
+                            <td style="font-size: medium; text-align: center;"><b>DISSC</b></td> 
+                            <td><audio controls=""><source src="resources/wavs/ssc/dissc/p245_001.wav"></audio></td>
+                            <td><audio controls=""><source src="resources/wavs/ssc/dissc/p270_007.wav"></audio></td>
+                            <td><audio controls=""><source src="resources/wavs/ssc/dissc/p239_001.wav"></audio></td>
+                            <td><audio controls=""><source src="resources/wavs/ssc/dissc/p231_010.wav"></audio></td>
+                        </tr> 
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+                        <tr> 
+                            <td style="font-size: medium; text-align: center;"><b>EmbSpeech   </b></td>
+                            <td><audio controls=""><source src="resources/wavs/ssc/embspeech/p245_001.wav"></audio></td>
+                            <td><audio controls=""><source src="resources/wavs/ssc/embspeech/p270_007.wav"></audio></td>
+                            <td><audio controls=""><source src="resources/wavs/ssc/embspeech/p239_001.wav"></audio></td>
+                            <td><audio controls=""><source src="resources/wavs/ssc/embspeech/p231_010.wav"></audio></td>
+                        </tr> 
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+                    </tbody> 
+                </table> 
+            </div>
+            <br><br><br>
+
+            <!-- 4 Ablation-->
+            <h2 class="wrapper" style="color: rgb(141, 82, 167)">4. Ablation Study on Labeled Data Amount</h2>    
+            <p class="wrapper">
+                <!--  -->
+            </p>    
+        
+
+            <div>
+                <table class="wrapper"> 
+                    <tbody style="margin-right: auto; text-align: center;"> 
+                        <tr> 
+                            <td style="font-size: medium; text-align: center;">Text</td> 
+                            <td>He was handsome and bold and pleasant, offhand and gay and kind.</td> 
+                            <td>I will show you what a good job I did, and she went to a tall cupboard and threw open the doors.</td> 
+                            <td>But tools were not wanting, as indeed they never have been, for murder and its kindred outrages.</td> 
+                            <td>A ring of amethyst I could not wear here, plainer to my sight, Than that first kiss.</td> 
+                        </tr>
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+                        <tr> 
+                            <td style="font-size: medium; text-align: center;">Target</td> 
+                            <td><audio controls=""><source src="resources/wavs/tts/ref/121_127105_000044_000004.wav"></audio></td> 
+                            <td><audio controls=""><source src="resources/wavs/tts/ref/1284_1181_000003_000002.wav"></audio></td> 
+                            <td><audio controls=""><source src="resources/wavs/tts/ref/4077_13754_000003_000000.wav"></audio></td> 
+                            <td><audio controls=""><source src="resources/wavs/tts/ref/908_31957_000003_000002.wav"></audio></td> 
+                        </tr> 
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+  
+                        <tr> 
+                            <td style="font-size: medium; text-align: center;">
+                                <b>EmbSpeech</b> (100% of labeled data)
+                            </td>
+                                <td><audio controls=""><source src="resources/wavs/tts/embspeech/121_127105_000043_000004.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/embspeech/1284_1180_000053_000001.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/embspeech/4077_13751_000019_000003.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/embspeech/908_31957_000017_000001.wav"></audio></td>
+                        </tr> 
+                        <tr> 
+                            <td><br></td> 
+                        </tr>
+                        <tr> 
+                            <td style="font-size: medium; text-align: center;">
+                                <b>EmbSpeech</b> (75% of labeled data)
+                            </td>
+                                <td><audio controls=""><source src="resources/wavs/tts/es_75/121_127105_000043_000004.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/es_75/1284_1180_000053_000001.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/es_75/4077_13751_000019_000003.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/es_75/908_31957_000017_000001.wav"></audio></td>
+                        </tr> 
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+                        <tr> 
+                            <td style="font-size: medium; text-align: center; width:500px">
+                                <b>EmbSpeech</b> (50% of labeled data)
+                            </td>
+                                <td><audio controls=""><source src="resources/wavs/tts/es_50/121_127105_000043_000004.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/es_50/1284_1180_000053_000001.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/es_50/4077_13751_000019_000003.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/es_50/908_31957_000017_000001.wav"></audio></td>
+                        </tr> 
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+                        <tr> 
+                            <td style="font-size: medium; text-align: center;">
+                                <b>EmbSpeech</b> (25% of labeled data)
+                            </td>
+                                <td><audio controls=""><source src="resources/wavs/tts/es_25/121_127105_000043_000004.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/es_25/1284_1180_000053_000001.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/es_25/4077_13751_000019_000003.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/es_25/908_31957_000017_000001.wav"></audio></td>
+                        </tr> 
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+                        <tr> 
+                            <td style="font-size: medium; text-align: center;">
+                                <b>EmbSpeech</b> (5% of labeled data)
+                            </td>
+                                <td><audio controls=""><source src="resources/wavs/tts/es_05/121_127105_000043_000004.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/es_05/1284_1180_000053_000001.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/es_05/4077_13751_000019_000003.wav"></audio></td>
+                                <td><audio controls=""><source src="resources/wavs/tts/es_05/908_31957_000017_000001.wav"></audio></td>
+                        </tr> 
+                        <tr> 
+                            <td><br></td> 
+                        </tr> 
+                        
+                    </tbody> 
+                </table> 
+            </div>
+            <br><br><br>
+        </div>
+        
+    </body>
+</html>
